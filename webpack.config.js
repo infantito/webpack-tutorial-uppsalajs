@@ -18,7 +18,13 @@ const entry = PRODUCTION
 
 const plugins = PRODUCTION
                 ? [
-                    new webpack.optimize.UglifyJsPlugin(),
+                    new webpack.optimize.UglifyJsPlugin(/*{
+                      comments: true, // By default false for delete comments and minify
+                      mangle: false, // By default false, Keep the sentences names
+                      compress: {
+                        warnings: true
+                      }
+                    }*/),
                     new ExtractTextPlugin('styles-[contenthash:10].css'),
                     new HTMLWebpackPlugin({
                       template: 'index-template.html'
