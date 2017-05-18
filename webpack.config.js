@@ -9,9 +9,9 @@ const DEVELOPMENT = process.env.NODE_ENV === 'development';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 const entry = PRODUCTION 
-              ? [ './src/index.js' ]
+              ? [ `${process.cwd()}/src/index.js` ]
               : [
-                  './src/index.js',
+                  `${process.cwd()}/src/index.js`,
                   'webpack/hot/dev-server',
                   'webpack-dev-server/client?http://localhost:8080'
                 ];
@@ -25,7 +25,7 @@ const plugins = PRODUCTION
                         warnings: true
                       }
                     }*/),
-                    new ExtractTextPlugin('styles-[contenthash:10].css'),
+                    new ExtractTextPlugin('styles.css'),
                     new HTMLWebpackPlugin({
                       template: 'index-template.html'
                     })
@@ -67,8 +67,8 @@ module.exports = {
     }]
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(process.cwd(), 'dist'),
     publicPath: PRODUCTION ? './' : '/dist/',
-    filename: PRODUCTION ? 'bundle.[hash:12].min.js' : 'bundle.js'
+    filename: 'bundle.js'
   }
 }
