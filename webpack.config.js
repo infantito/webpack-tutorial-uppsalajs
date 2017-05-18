@@ -50,10 +50,6 @@ module.exports = {
   devtool: 'source-map',
   entry: entry,
   plugins: plugins,
-  externals: {
-    // jquery is external and available at the global variable jQuery
-    'jquery': 'jQuery'
-  },
   module: {
     rules: [{
       test: /\.js$/,
@@ -72,7 +68,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: PRODUCTION ? '/' : '/dist/',
+    publicPath: PRODUCTION ? './' : '/dist/',
     filename: PRODUCTION ? 'bundle.[hash:12].min.js' : 'bundle.js'
   }
 }
